@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jesus & The Fishsticks</title>
+  <title>Jesus & The Fishsticks — Straight from the can</title>
+  <meta name="description" content="Jesus & The Fishsticks — een Eindhovense band met een bijzonder verhaal. Blues, rock-'n-roll en industriële punk. Debut EP 'Straight from the can' nu uit." />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
-      --dark: #111;
+      --black:  #080808;
+      --dark:   #111;
+      --card:   #131313;
+      --border: #1e1e1e;
       --accent: #e8c84a;
-      --accent2: #c0392b;
-      --light: #f5f0e8;
-      --mid: #888;
+      --red:    #c0392b;
+      --light:  #f0ead8;
+      --mid:    #777;
+      --muted:  #444;
     }
 
     html { scroll-behavior: smooth; }
@@ -25,769 +29,789 @@
       color: var(--light);
       font-family: 'Open Sans', sans-serif;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #222;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
-      height: 60px;
-    }
-
-    .nav-logo {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--light);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-      background: var(--black);
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(200, 60, 40, 0.15) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 50%, rgba(232, 200, 74, 0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .fish-deco {
-      position: absolute;
-      font-size: 8rem;
-      opacity: 0.04;
-      pointer-events: none;
-      user-select: none;
-    }
-    .fish-deco.tl { top: 10%; left: 5%; transform: rotate(-20deg); }
-    .fish-deco.br { bottom: 10%; right: 5%; transform: rotate(160deg); }
-    .fish-deco.tr { top: 20%; right: 8%; transform: rotate(10deg); font-size: 5rem; }
-
-    .hero-eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-
-    .hero-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      position: relative;
-    }
-
-    .hero-title .jesus {
-      color: var(--light);
-      display: block;
-    }
-
-    .hero-title .ampersand {
-      color: var(--accent2);
-      font-size: 0.6em;
-      display: block;
-    }
-
-    .hero-title .fishsticks {
-      color: var(--accent);
-      display: block;
-    }
-
-    .hero-sub {
-      margin-top: 2rem;
-      font-size: 1.1rem;
-      color: var(--mid);
-      max-width: 500px;
-      position: relative;
-    }
-
-    .hero-ep-badge {
-      margin-top: 3rem;
-      display: inline-block;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.75rem 2rem;
-      position: relative;
-      cursor: default;
-    }
-
-    .hero-ep-badge span {
-      color: var(--light);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--mid);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .scroll-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid var(--mid);
-      border-bottom: 2px solid var(--mid);
-      transform: rotate(45deg);
-      animation: bounce 1.5s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); }
-      50% { transform: rotate(45deg) translateY(4px); }
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 2rem;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
+    /* ── UTILITIES ── */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
     .section-label {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 1rem;
+      color: var(--red);
+      margin-bottom: 0.75rem;
     }
-
     .section-title {
       font-family: 'Oswald', sans-serif;
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
       text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 2rem;
-      color: var(--light);
+      line-height: 1.05;
+      margin-bottom: 1rem;
     }
-
-    .divider {
-      width: 60px;
-      height: 3px;
+    .rule {
+      width: 50px; height: 3px;
       background: var(--accent);
       margin-bottom: 2.5rem;
     }
+    section { padding: 6rem 0; border-top: 1px solid var(--border); }
 
-    /* ABOUT */
-    #about {
-      border-top: 1px solid #1a1a1a;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(8,8,8,.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
     }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: #bbb;
-      margin-bottom: 1.25rem;
-    }
-
-    .about-text p:first-of-type {
-      font-size: 1.15rem;
-      color: var(--light);
-    }
-
-    .pullquote {
-      background: #141414;
-      border-left: 4px solid var(--accent);
-      padding: 2rem;
+    .nav-logo {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      line-height: 1.3;
-      color: var(--light);
-      position: relative;
+      font-size: 1rem; letter-spacing: .08em;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-links { list-style: none; display: flex; gap: 1.75rem; }
+    .nav-links a {
+      color: var(--mid); text-decoration: none;
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* hamburger – mobile */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--light); margin: 5px 0; transition: .3s;
     }
 
-    .pullquote::before {
-      content: '\201C';
-      font-size: 5rem;
-      color: var(--accent);
-      opacity: 0.3;
-      position: absolute;
-      top: -1rem;
-      left: 1rem;
-      line-height: 1;
-      font-family: Georgia, serif;
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
     }
-
-    .pullquote cite {
-      display: block;
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      font-family: 'Open Sans', sans-serif;
-      color: var(--mid);
-      font-style: normal;
-      letter-spacing: 0.05em;
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 15% 60%, rgba(192,57,43,.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 40%, rgba(232,200,74,.07) 0%, transparent 55%);
     }
-
-    /* MEMBERS */
-    #members {
-      border-top: 1px solid #1a1a1a;
+    .hero-noise {
+      position: absolute; inset: 0; pointer-events: none; opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
     }
-
-    .members-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .member-card {
-      background: #111;
-      border: 1px solid #222;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .member-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .member-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .member-name {
+    .hero-inner { position: relative; text-align: center; max-width: 780px; }
+    .hero-eyebrow {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      color: var(--light);
-      margin-bottom: 0.25rem;
+      font-size: .8rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 2rem;
     }
-
-    .member-role {
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* EP */
-    #ep {
-      border-top: 1px solid #1a1a1a;
-    }
-
-    .ep-layout {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .ep-cover {
-      width: 220px;
-      height: 220px;
-      background: #111;
-      border: 1px solid #333;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      flex-shrink: 0;
-    }
-
-    .ep-cover .ep-can {
-      font-size: 4rem;
-    }
-
-    .ep-cover-title {
+    .hero-title {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      text-align: center;
-      padding: 0 1rem;
+      font-size: clamp(3.2rem, 12vw, 8rem);
+      font-weight: 700; line-height: .92; text-transform: uppercase;
     }
+    .hero-title .t-light { color: var(--light); display: block; }
+    .hero-title .t-amp   { color: var(--red); font-size: .55em; display: block; letter-spacing: .05em; }
+    .hero-title .t-gold  { color: var(--accent); display: block; }
 
-    .ep-cover-band {
-      font-size: 0.7rem;
-      color: var(--mid);
-      letter-spacing: 0.1em;
-      text-align: center;
+    .hero-sub {
+      margin-top: 2rem; font-size: 1.1rem; color: var(--mid);
+      max-width: 480px; margin-left: auto; margin-right: auto;
     }
-
-    .ep-info h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.8rem;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
+    .hero-ctas {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 2.5rem;
     }
-
-    .ep-info .ep-sub {
-      color: var(--mid);
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .ep-info p {
-      color: #bbb;
-      margin-bottom: 1rem;
-    }
-
-    .genre-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .tag {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      color: var(--light);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.4rem 0.9rem;
-    }
-
-    .stream-note {
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--mid);
-      padding: 1rem;
-      border: 1px dashed #333;
-    }
-
-    .stream-note strong { color: var(--light); }
-
-    /* SHOW */
-    #show {
-      border-top: 1px solid #1a1a1a;
-    }
-
-    .show-card {
-      background: #111;
-      border: 1px solid #333;
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .show-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-    }
-
-    .show-info-left .show-date {
-      font-family: 'Oswald', sans-serif;
-      font-size: 3rem;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .show-info-left .show-month {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      color: var(--light);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .show-info-left .show-year {
-      color: var(--mid);
-      font-size: 0.9rem;
-    }
-
-    .show-info-left .show-time {
-      margin-top: 1.5rem;
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      color: var(--light);
-    }
-
-    .show-info-left .show-price {
+    .btn {
+      font-family: 'Oswald', sans-serif; font-size: .9rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .75rem 2rem; text-decoration: none; cursor: pointer;
+      border: none; transition: background .2s, color .2s;
       display: inline-block;
-      margin-top: 1rem;
-      background: var(--accent);
-      color: var(--black);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      font-weight: 700;
+    }
+    .btn-primary { background: var(--accent); color: var(--black); }
+    .btn-primary:hover { background: #f5d85a; }
+    .btn-outline { border: 1px solid var(--mid); color: var(--light); background: transparent; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-ep-strip {
+      margin-top: 3.5rem;
+      display: inline-flex; align-items: center; gap: 1rem;
+      border: 1px solid var(--border);
+      padding: .75rem 1.5rem;
+      font-size: .85rem; color: var(--mid);
+    }
+    .hero-ep-strip strong { color: var(--accent); font-family: 'Oswald', sans-serif; font-size: 1rem; }
+
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: var(--muted); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 18px; height: 18px;
+      border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg); animation: bounce 1.8s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: rotate(45deg) translateY(0); }
+      50%      { transform: rotate(45deg) translateY(5px); }
     }
 
-    .show-info-right .show-venue {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.4rem;
-      color: var(--light);
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start;
+    }
+    .about-text p { color: #bbb; margin-bottom: 1.2rem; }
+    .about-text p.lead { color: var(--light); font-size: 1.1rem; }
+    .pullquote {
+      background: var(--card); border-left: 4px solid var(--accent);
+      padding: 2rem; position: relative;
+    }
+    .pullquote::before {
+      content: '\201C'; font-family: Georgia, serif;
+      font-size: 5rem; color: var(--accent); opacity: .25;
+      position: absolute; top: -.8rem; left: .8rem; line-height: 1;
+    }
+    .pullquote p {
+      font-family: 'Oswald', sans-serif; font-size: 1.35rem;
+      line-height: 1.35; color: var(--light);
+    }
+    .pullquote cite {
+      display: block; margin-top: 1rem;
+      font-size: .8rem; font-style: normal;
+      color: var(--mid); letter-spacing: .05em;
     }
 
-    .show-info-right .show-address {
-      color: var(--mid);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
+    /* ── MEMBERS ── */
+    .members-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;
+    }
+    .member-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 2rem 1.5rem; text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .member-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .member-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: #1a1a1a; margin: 0 auto 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; border: 2px solid var(--border);
+    }
+    .member-card:hover .member-avatar { border-color: var(--accent); }
+    .member-name {
+      font-family: 'Oswald', sans-serif; font-size: 1.15rem;
+      text-transform: uppercase; margin-bottom: .2rem;
+    }
+    .member-role {
+      font-size: .75rem; color: var(--accent);
+      letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .member-bio { font-size: .85rem; color: var(--mid); }
+
+    /* staff row */
+    .staff-row {
+      margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .staff-item { font-size: .9rem; }
+    .staff-item span { color: var(--mid); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: .2rem; }
+    .staff-item strong { color: var(--light); }
+
+    /* ── MUSIC ── */
+    #music { background: var(--dark); }
+    .music-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;
+    }
+    .ep-mockup {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 2.5rem; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    .ep-vinyl {
+      width: 160px; height: 160px; border-radius: 50%;
+      background: conic-gradient(#111, #1a1a1a 10%, #111 20%, #1a1a1a 30%, #111 40%, #1a1a1a 50%, #111 60%, #1a1a1a 70%, #111 80%, #1a1a1a 90%, #111);
+      border: 3px solid #222;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; animation: spin 8s linear infinite; animation-play-state: paused;
+    }
+    .ep-vinyl:hover { animation-play-state: running; }
+    .ep-vinyl-label {
+      width: 55px; height: 55px; border-radius: 50%;
+      background: var(--accent); border: 2px solid #c8a830;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Oswald', sans-serif; font-size: .5rem; letter-spacing: .05em;
+      text-transform: uppercase; color: var(--black); text-align: center; line-height: 1.2;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ep-meta h3 {
+      font-family: 'Oswald', sans-serif; font-size: 1.6rem;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .ep-meta .sub { color: var(--mid); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; margin: .25rem 0 1rem; }
+    .ep-meta p { color: #bbb; font-size: .9rem; margin-bottom: .75rem; }
+    .genre-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0; }
+    .tag {
+      background: #1a1a1a; border: 1px solid var(--border);
+      font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .35rem .8rem; color: var(--light);
     }
 
-    .show-info-right .show-acts-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.75rem;
+    .stream-buttons { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.5rem; }
+    .stream-btn {
+      display: flex; align-items: center; gap: .75rem;
+      background: var(--card); border: 1px solid var(--border);
+      padding: .75rem 1rem; text-decoration: none; color: var(--light);
+      font-size: .85rem; transition: border-color .2s, color .2s;
+    }
+    .stream-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .stream-btn .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .stream-btn .label { font-family: 'Oswald', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+    .stream-btn .arrow { margin-left: auto; color: var(--muted); }
+
+    /* ── SHOWS ── */
+    .shows-list { display: flex; flex-direction: column; gap: 1px; }
+    .show-item {
+      background: var(--card); border: 1px solid var(--border);
+      display: grid; grid-template-columns: 100px 1fr auto;
+      gap: 2rem; padding: 1.5rem 2rem; align-items: center;
+      transition: border-color .2s;
+    }
+    .show-item:hover { border-color: var(--accent); }
+    .show-date-box { text-align: center; }
+    .show-day {
+      font-family: 'Oswald', sans-serif; font-size: 2.5rem;
+      color: var(--accent); line-height: 1;
+    }
+    .show-month {
+      font-family: 'Oswald', sans-serif; font-size: .9rem;
+      text-transform: uppercase; letter-spacing: .1em; color: var(--light);
+    }
+    .show-year { font-size: .75rem; color: var(--mid); }
+    .show-details h4 {
+      font-family: 'Oswald', sans-serif; font-size: 1.2rem;
+      text-transform: uppercase; margin-bottom: .25rem;
+    }
+    .show-details .show-venue { color: var(--mid); font-size: .9rem; }
+    .show-details .show-support {
+      font-size: .75rem; color: var(--muted); margin-top: .4rem;
+      letter-spacing: .05em;
+    }
+    .show-badge {
+      font-family: 'Oswald', sans-serif; font-size: .75rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .35rem .9rem; background: var(--accent); color: var(--black); white-space: nowrap;
+    }
+    .show-badge.past { background: transparent; border: 1px solid var(--muted); color: var(--muted); }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--dark); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: .75rem;
+    }
+    .gallery-item {
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item.large { grid-column: span 2; }
+    .gallery-placeholder {
+      font-size: 3rem; opacity: .15; user-select: none;
+    }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.6);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .25s;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent);
+    }
+    .gallery-note {
+      text-align: center; color: var(--mid); font-size: .85rem; margin-top: 1.5rem;
     }
 
-    .act-list {
-      list-style: none;
+    /* ── PRESSKIT ── */
+    .presskit-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
     }
-
-    .act-list li {
-      padding: 0.4rem 0;
-      border-bottom: 1px solid #1d1d1d;
-      font-size: 0.95rem;
+    .presskit-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 2rem; display: flex; flex-direction: column; gap: .75rem;
     }
-
-    .act-list li.headliner {
-      color: var(--light);
-      font-weight: 600;
+    .presskit-icon { font-size: 2rem; }
+    .presskit-card h4 {
+      font-family: 'Oswald', sans-serif; font-size: 1rem;
+      text-transform: uppercase; letter-spacing: .05em;
     }
+    .presskit-card p { font-size: .85rem; color: var(--mid); flex: 1; }
+    .presskit-card .btn { margin-top: auto; text-align: center; }
 
-    .act-list li.support {
-      color: var(--mid);
+    /* ── NEWSLETTER ── */
+    #newsletter {
+      background: var(--dark); text-align: center;
     }
-
-    /* FOUNDATION */
-    #foundation {
-      border-top: 1px solid #1a1a1a;
+    .newsletter-inner { max-width: 540px; margin: 0 auto; }
+    .newsletter-inner .section-title { margin-bottom: .75rem; }
+    .newsletter-inner p { color: var(--mid); margin-bottom: 2rem; }
+    .newsletter-form {
+      display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center;
     }
-
-    .foundation-box {
-      background: #0f0f0f;
-      border: 1px solid #1e1e1e;
-      padding: 3rem;
+    .newsletter-form input {
+      flex: 1 1 260px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--light); padding: .85rem 1.25rem;
+      font-family: 'Open Sans', sans-serif; font-size: .9rem;
+      outline: none;
     }
+    .newsletter-form input::placeholder { color: var(--muted); }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-fine { font-size: .75rem; color: var(--muted); margin-top: 1rem; }
 
-    .foundation-box p {
-      color: #bbb;
-      margin-bottom: 1rem;
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
     }
+    .contact-info p { color: #bbb; margin-bottom: 1.25rem; }
+    .contact-info .contact-email {
+      display: flex; align-items: center; gap: .5rem;
+      color: var(--accent); font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem; text-decoration: none; letter-spacing: .05em;
+      margin-top: 1.5rem;
+    }
+    .contact-info .contact-email:hover { text-decoration: underline; }
+    .contact-socials { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 42px; height: 42px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 1.1rem;
+      color: var(--mid); transition: border-color .2s, color .2s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
 
-    .foundation-box p:last-child { margin-bottom: 0; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    form input, form textarea, form select {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--light); padding: .85rem 1.25rem;
+      font-family: 'Open Sans', sans-serif; font-size: .9rem; outline: none;
+      resize: vertical;
+    }
+    form input:focus, form textarea:focus, form select:focus { border-color: var(--accent); }
+    form input::placeholder, form textarea::placeholder { color: var(--muted); }
+    form label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); margin-bottom: -.25rem; }
+    form textarea { min-height: 130px; }
+    form select option { background: var(--dark); }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      border-top: 1px solid #1a1a1a;
-      text-align: center;
+      border-top: 1px solid var(--border);
       padding: 3rem 2rem;
-      color: #444;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
+      text-align: center;
     }
-
-    footer strong {
-      color: var(--accent);
-      font-family: 'Oswald', sans-serif;
+    .footer-logo {
+      font-family: 'Oswald', sans-serif; font-size: 1.5rem;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .75rem;
     }
+    footer p { font-size: .8rem; color: var(--muted); }
+    footer a { color: var(--mid); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
 
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      .about-grid,
-      .ep-layout,
-      .show-card {
-        grid-template-columns: 1fr;
-      }
-
-      .ep-cover {
-        width: 100%;
-        height: 200px;
-      }
-
-      nav { padding: 0 1rem; }
-
-      .nav-links { gap: 1rem; }
-
-      .nav-links a { font-size: 0.75rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--black); border-bottom: 1px solid var(--border); padding: 1rem 2rem 1.5rem; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .about-grid, .music-grid, .contact-grid { grid-template-columns: 1fr; }
+      .show-item { grid-template-columns: 80px 1fr; }
+      .show-badge { grid-column: 1 / -1; justify-self: start; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item.large { grid-column: span 1; }
+    }
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a class="nav-logo" href="#hero">J&TF</a>
-    <ul class="nav-links">
-      <li><a href="#about">Over ons</a></li>
-      <li><a href="#members">Band</a></li>
-      <li><a href="#ep">EP</a></li>
-      <li><a href="#show">Shows</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">J&amp;TF</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Over ons</a></li>
+    <li><a href="#music">Muziek</a></li>
+    <li><a href="#shows">Shows</a></li>
+    <li><a href="#gallery">Foto's</a></li>
+    <li><a href="#press">Pers</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero" style="max-width:100%; padding-left:0; padding-right:0;">
-    <div class="hero-bg"></div>
-    <span class="fish-deco tl">🐟</span>
-    <span class="fish-deco br">🐟</span>
-    <span class="fish-deco tr">✝</span>
-
-    <p class="hero-eyebrow">Eindhoven &nbsp;·&nbsp; Blues &nbsp;·&nbsp; Rock &amp; Roll &nbsp;·&nbsp; Industrial Punk</p>
-
+<!-- HERO -->
+<section id="hero" style="border:none;">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Eindhoven &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Debut EP uit nu</p>
     <h1 class="hero-title">
-      <span class="jesus">Jesus</span>
-      <span class="ampersand">&amp;</span>
-      <span class="fishsticks">The Fishsticks</span>
+      <span class="t-light">Jesus</span>
+      <span class="t-amp">&amp;</span>
+      <span class="t-gold">The Fishsticks</span>
     </h1>
-
-    <p class="hero-sub">Geen therapeutisch clubje — maar een band met een missie.</p>
-
-    <div class="hero-ep-badge">
-      EP uit nu: <span>"Straight from the can"</span>
+    <p class="hero-sub">Geen therapeutisch clubje — maar een band met een missie. Blues, rock-'n-roll en industriële punk uit Eindhoven.</p>
+    <div class="hero-ctas">
+      <a href="#music" class="btn btn-primary">Beluister de EP</a>
+      <a href="#shows" class="btn btn-outline">Aankomende shows</a>
     </div>
-
-    <div class="scroll-hint">
-      <span>scroll</span>
-      <div class="scroll-arrow"></div>
+    <div class="hero-ep-strip">
+      <span>🥫</span>
+      <span>Debut EP &nbsp;<strong>"Straight from the can"</strong>&nbsp; — nu beschikbaar op alle streamingdiensten</span>
     </div>
-  </section>
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
     <p class="section-label">Het verhaal</p>
-    <h2 class="section-title">Een band met<br>een bijzonder verhaal</h2>
-    <div class="divider"></div>
-
+    <h2 class="section-title">Over de band</h2>
+    <div class="rule"></div>
     <div class="about-grid">
       <div class="about-text">
-        <p>
-          Jesus &amp; The Fishsticks trekken de aandacht met hun naam — en overtuigen met hun verhaal.
-          Zanger en bassist Styn Pruijn filosofeerde ooit over een groep genaamd <em>The Fishsticks About Jesus</em>.
-          Gitarist Willem Holthausen bedacht ter plekke de huidige naam.
-        </p>
-        <p>
-          Holthausen: <em>"Jezus is de bekendste persoon uit de geschiedenis, ook een soort popster.
-          Dus we hebben meteen naamsbekendheid."</em>
-        </p>
-        <p>
-          De organisatie achter de band is opgericht door Cor Verbrugge, medewerker bij Novadic-Kentron.
-          Zijn doel: muzikale (ex-)cliënten uit de verslavingszorg of GGZ een podium geven.
-          Onder leiding van coach Ruud Borgers — een ervaren Eindhovense muzikant — ging de groep repeteren
-          en werken aan eigen nummers.
-        </p>
-        <p>
-          <em>"De band is een organisme dat constant verandert."</em>
-        </p>
+        <p class="lead">Jesus &amp; The Fishsticks trekken de aandacht met hun naam — en overtuigen met hun bijzondere verhaal.</p>
+        <p>Zanger en bassist Styn Pruijn filosofeerde ooit over een groep genaamd <em>The Fishsticks About Jesus</em>. Toen hij dat vertelde aan gitarist Willem Holthausen, bedacht die ter plekke de huidige naam. Holthausen: <em>"Jezus is de bekendste persoon uit de geschiedenis, ook een soort popster. Dus we hebben meteen naamsbekendheid."</em></p>
+        <p>De organisatie achter de band is opgericht door Cor Verbrugge, medewerker bij Novadic-Kentron. Zijn doel: muzikale (ex-)cliënten uit de verslavingszorg of GGZ een professioneel podium geven. Onder leiding van coach Ruud Borgers — een ervaren Eindhovense muzikant — ging de groep repeteren en werken aan eigen nummers.</p>
+        <p>Styn Pruijn over het belang van lange termijn: <em>"Voor een verslaafde voelt alles heel urgent; er moet nú iets gebeuren. Het is moeilijk een ruimte te creëren waarbinnen je kan groeien."</em> De band slaagde er toch in: de songs werden kinderen — iets om voor te zorgen.</p>
       </div>
-
       <blockquote class="pullquote">
-        De muziek zelf is de therapie en de uitlaatklep.
+        <p>De muziek zelf is de therapie en de uitlaatklep.</p>
         <cite>— Ruud Borgers, coach van de band</cite>
       </blockquote>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- MEMBERS -->
-  <section id="members">
-    <p class="section-label">De band</p>
-    <h2 class="section-title">Wie zijn wij</h2>
-    <div class="divider"></div>
-
+<!-- MEMBERS -->
+<section id="members" style="padding-top:0; border:none;">
+  <div class="container">
+    <p class="section-label">De mensen</p>
+    <h2 class="section-title">Bandleden</h2>
+    <div class="rule"></div>
     <div class="members-grid">
       <div class="member-card">
-        <div class="member-icon">🎤</div>
+        <div class="member-avatar">🎤</div>
         <p class="member-name">Styn Pruijn</p>
         <p class="member-role">Zang &amp; Bas</p>
+        <p class="member-bio">Initiatiefnemer en filosoof achter de bandnaam. Overtuigd christen met een scherp gevoel voor woorden.</p>
       </div>
       <div class="member-card">
-        <div class="member-icon">🎸</div>
+        <div class="member-avatar">🎸</div>
         <p class="member-name">Willem Holthausen</p>
         <p class="member-role">Gitaar</p>
+        <p class="member-bio">Bedacht ter plekke de naam Jesus &amp; The Fishsticks. Woordvoerder en creatieve motor.</p>
       </div>
       <div class="member-card">
-        <div class="member-icon">🎸</div>
+        <div class="member-avatar">🎸</div>
         <p class="member-name">Wim Reijnen</p>
         <p class="member-role">Gitaar</p>
+        <p class="member-bio">Brengt textuur en diepte aan het gitaargeluid van de band.</p>
       </div>
       <div class="member-card">
-        <div class="member-icon">🥁</div>
+        <div class="member-avatar">🥁</div>
         <p class="member-name">Robert Smissaert</p>
         <p class="member-role">Drums</p>
+        <p class="member-bio">Gerekruteerd door Borgers; speelde eerder samen in rockband Bo/The Rude. Het kloppend hart van de band.</p>
       </div>
     </div>
+    <div class="staff-row">
+      <div class="staff-item"><span>Coach</span><strong>Ruud Borgers</strong></div>
+      <div class="staff-item"><span>Oprichter</span><strong>Cor Verbrugge</strong></div>
+      <div class="staff-item"><span>Organisatie</span><strong>Novadic-Kentron Foundation</strong></div>
+    </div>
+  </div>
+</section>
 
-    <p style="color:#666; font-size:0.85rem; margin-top:2rem;">
-      Onder begeleiding van coach <strong style="color:#aaa;">Ruud Borgers</strong> &nbsp;·&nbsp;
-      Opgericht door <strong style="color:#aaa;">Cor Verbrugge</strong> (Novadic-Kentron)
-    </p>
-  </section>
-
-  <!-- EP -->
-  <section id="ep">
+<!-- MUSIC -->
+<section id="music">
+  <div class="container">
     <p class="section-label">Muziek</p>
-    <h2 class="section-title">Debut EP</h2>
-    <div class="divider"></div>
-
-    <div class="ep-layout">
-      <div class="ep-cover">
-        <div class="ep-can">🥫</div>
-        <p class="ep-cover-title">Straight<br>from the can</p>
-        <p class="ep-cover-band">Jesus &amp; The Fishsticks</p>
-      </div>
-
-      <div class="ep-info">
-        <h3>Straight from the can</h3>
-        <p class="ep-sub">Debut EP &nbsp;·&nbsp; 2026</p>
-        <p>
-          Het resultaat van alle inspanningen is te horen op de debuut-EP van Jesus &amp; The Fishsticks.
-          De plaat is een eerlijk document van een band in wording — rauw, direct, en recht uit het hart.
-        </p>
-        <p>
-          Holthausen: <em>"Het gaat ons niet om het verkopen van een plaat. We willen mensen kennis laten maken
-          met de band en de foundation waaruit we voortkomen."</em>
-        </p>
-
-        <div class="genre-tags">
+    <h2 class="section-title">Straight from the can</h2>
+    <div class="rule"></div>
+    <div class="music-grid">
+      <div class="ep-mockup">
+        <div class="ep-vinyl">
+          <div class="ep-vinyl-label">
+            <span>J &amp; TF</span>
+            <span>EP</span>
+          </div>
+        </div>
+        <p style="color:var(--mid); font-size:.8rem; margin-top:.5rem;">Hover om te draaien ↑</p>
+        <div style="text-align:center">
+          <p style="font-family:'Oswald',sans-serif; font-size:1.2rem; text-transform:uppercase; color:var(--accent);">Straight from the can</p>
+          <p style="font-size:.8rem; color:var(--mid); letter-spacing:.1em; text-transform:uppercase;">Debut EP &nbsp;·&nbsp; 2026</p>
+        </div>
+        <div class="genre-tags" style="justify-content:center;">
           <span class="tag">Blues</span>
           <span class="tag">Rock &amp; Roll</span>
           <span class="tag">Industriële Punk</span>
-          <span class="tag">Eindhoven</span>
         </div>
+      </div>
 
-        <div class="stream-note">
-          <strong>Nu beschikbaar</strong> via alle streamingdiensten.
+      <div class="ep-meta">
+        <h3>Beluister de EP</h3>
+        <p class="sub">Beschikbaar op alle platforms</p>
+        <p>Het resultaat van alle inspanningen is te horen op de debuut-EP. De plaat is een eerlijk document van een band in wording — rauw, direct, en recht uit het hart.</p>
+        <p>Holthausen: <em>"Het gaat ons niet om het verkopen van een plaat. We willen mensen kennis laten maken met de band en de foundation waaruit we voortkomen."</em></p>
+
+        <div class="stream-buttons">
+          <a href="#" class="stream-btn">
+            <span class="icon">🎵</span>
+            <span class="label">Spotify</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#" class="stream-btn">
+            <span class="icon">🎶</span>
+            <span class="label">Apple Music</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#" class="stream-btn">
+            <span class="icon">☁️</span>
+            <span class="label">SoundCloud</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#" class="stream-btn">
+            <span class="icon">🎸</span>
+            <span class="label">Bandcamp</span>
+            <span class="arrow">→</span>
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SHOW -->
-  <section id="show">
+<!-- SHOWS -->
+<section id="shows">
+  <div class="container">
     <p class="section-label">Live</p>
-    <h2 class="section-title">Releaseshow</h2>
-    <div class="divider"></div>
-
-    <div class="show-card">
-      <div class="show-info-left">
-        <div class="show-date">14</div>
-        <div class="show-month">Maart</div>
-        <div class="show-year">2026</div>
-
-        <div class="show-time">Zaal open: 20:00 uur</div>
-        <span class="show-price">Gratis toegang</span>
+    <h2 class="section-title">Shows &amp; Agenda</h2>
+    <div class="rule"></div>
+    <div class="shows-list">
+      <div class="show-item">
+        <div class="show-date-box">
+          <div class="show-day">14</div>
+          <div class="show-month">Mrt</div>
+          <div class="show-year">2026</div>
+        </div>
+        <div class="show-details">
+          <h4>Releaseshow — Straight from the can</h4>
+          <p class="show-venue">PopEi &nbsp;·&nbsp; Klokgebouw, Eindhoven &nbsp;·&nbsp; Zaal open: 20:00</p>
+          <p class="show-support">Met speciale gasten: Mavaotic &amp; Brechtje</p>
+        </div>
+        <span class="show-badge past">Geweest</span>
       </div>
 
-      <div class="show-info-right">
-        <p class="show-venue">PopEi — Klokgebouw</p>
-        <p class="show-address">Klokgebouw, Eindhoven</p>
-
-        <p class="show-acts-label">Line-up</p>
-        <ul class="act-list">
-          <li class="headliner">Jesus &amp; The Fishsticks</li>
-          <li class="support">Mavaotic (speciale gast)</li>
-          <li class="support">Brechtje (speciale gast)</li>
-        </ul>
+      <div class="show-item" style="opacity:.45; pointer-events:none; user-select:none;">
+        <div class="show-date-box">
+          <div class="show-day">—</div>
+          <div class="show-month">TBA</div>
+          <div class="show-year">2026</div>
+        </div>
+        <div class="show-details">
+          <h4>Volgende show — Binnenkort bekend</h4>
+          <p class="show-venue">Locatie nog te bevestigen</p>
+        </div>
+        <span class="show-badge">Meer info volgt</span>
       </div>
     </div>
-  </section>
 
-  <!-- FOUNDATION -->
-  <section id="foundation">
-    <p class="section-label">Achtergrond</p>
-    <h2 class="section-title">De foundation</h2>
-    <div class="divider"></div>
-
-    <div class="foundation-box">
-      <p>
-        Jesus &amp; The Fishsticks is geen therapeutisch clubje voor ex-verslaafden.
-        De muziek <em>zelf</em> is de therapie — en de uitlaatklep.
-        De organisatie biedt muzikale (ex-)cliënten uit de verslavingszorg en GGZ een professioneel platform.
-      </p>
-      <p>
-        Pruijn over de lange termijn: <em>"Voor een verslaafde voelt alles heel urgent; er moet nú iets gebeuren.
-        Het is moeilijk een ruimte te creëren waarbinnen je kan groeien."</em>
-      </p>
-      <p>
-        Borgers: <em>"De songs die ze samen maken worden allemaal kinderen. Daar moet je voor zorgen.
-        Elke week was er een dag waarop ze er voor de band moesten zijn."</em>
-      </p>
-    </div>
-  </section>
-
-  <footer>
-    <p><strong>Jesus &amp; The Fishsticks</strong></p>
-    <p style="margin-top:0.5rem;">Eindhoven &nbsp;·&nbsp; 2026</p>
-    <p style="margin-top:0.5rem; color:#333; font-size:0.75rem;">
-      Gebaseerd op een artikel van Frank van den Muijsenberg, Eindhovens Dagblad, 14 maart 2026
+    <p style="color:var(--mid); font-size:.85rem; margin-top:2rem;">
+      Voor boekingen: <a href="#contact" style="color:var(--accent);">neem contact op</a>.
     </p>
-  </footer>
+  </div>
+</section>
 
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label">Beeldmateriaal</p>
+    <h2 class="section-title">Foto &amp; Video</h2>
+    <div class="rule"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item large" style="grid-row: span 2;">
+        <span class="gallery-placeholder">🎸</span>
+        <div class="gallery-overlay">Live @ PopEi</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎤</span>
+        <div class="gallery-overlay">Styn Pruijn</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🥁</span>
+        <div class="gallery-overlay">Robert Smissaert</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎵</span>
+        <div class="gallery-overlay">In de studio</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎸</span>
+        <div class="gallery-overlay">Willem Holthausen</div>
+      </div>
+    </div>
+    <p class="gallery-note">Persmateriaal beschikbaar via de <a href="#press" style="color:var(--accent);">perskit</a>.</p>
+  </div>
+</section>
+
+<!-- PRESS KIT -->
+<section id="press">
+  <div class="container">
+    <p class="section-label">Media &amp; Pers</p>
+    <h2 class="section-title">Perskit</h2>
+    <div class="rule"></div>
+    <div class="presskit-grid">
+      <div class="presskit-card">
+        <div class="presskit-icon">📄</div>
+        <h4>Officiële bio</h4>
+        <p>Volledige bandbio in NL &amp; EN, klaar voor publicatie.</p>
+        <a href="#" class="btn btn-outline" style="font-size:.75rem; padding:.6rem 1.2rem;">Download PDF</a>
+      </div>
+      <div class="presskit-card">
+        <div class="presskit-icon">🖼️</div>
+        <h4>Persfoto's</h4>
+        <p>Hi-res bandfotos (300 dpi) voor print en digitaal gebruik.</p>
+        <a href="#" class="btn btn-outline" style="font-size:.75rem; padding:.6rem 1.2rem;">Download ZIP</a>
+      </div>
+      <div class="presskit-card">
+        <div class="presskit-icon">🔤</div>
+        <h4>Logo's</h4>
+        <p>Bandlogo in zwart, wit en kleur — PNG en SVG formaten.</p>
+        <a href="#" class="btn btn-outline" style="font-size:.75rem; padding:.6rem 1.2rem;">Download ZIP</a>
+      </div>
+      <div class="presskit-card">
+        <div class="presskit-icon">📰</div>
+        <h4>In het nieuws</h4>
+        <p>Artikel in het Eindhovens Dagblad — Frank van den Muijsenberg, 14 maart 2026.</p>
+        <a href="#" class="btn btn-outline" style="font-size:.75rem; padding:.6rem 1.2rem;">Lees artikel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="newsletter-inner">
+      <p class="section-label">Op de hoogte blijven</p>
+      <h2 class="section-title">Nieuwsbrief</h2>
+      <p>Schrijf je in voor nieuws, nieuwe shows en exclusieve updates van Jesus &amp; The Fishsticks.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="jouw@emailadres.nl" autocomplete="email" />
+        <button type="submit" class="btn btn-primary">Inschrijven</button>
+      </form>
+      <p class="newsletter-fine">Geen spam. Je kunt je op elk moment uitschrijven.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Boekingen &amp; Vragen</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="rule"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Interesse in een booking? Vragen voor de pers? Of wil je gewoon in contact komen met de band of de foundation? Stuur ons een bericht.</p>
+        <p>Jesus &amp; The Fishsticks staat open voor optredens, samenwerkingen en mediaverzoeken.</p>
+        <a class="contact-email" href="mailto:info@jesusandthefishsticks.nl">
+          ✉ info@jesusandthefishsticks.nl
+        </a>
+        <div class="contact-socials">
+          <a class="social-link" href="#" title="Instagram">📷</a>
+          <a class="social-link" href="#" title="Facebook">👤</a>
+          <a class="social-link" href="#" title="Spotify">🎵</a>
+          <a class="social-link" href="#" title="YouTube">▶</a>
+        </div>
+      </div>
+
+      <form onsubmit="return false;" id="contactForm">
+        <label for="name">Naam</label>
+        <input id="name" type="text" placeholder="Jouw naam" />
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="jouw@email.nl" />
+        <label for="subject">Onderwerp</label>
+        <select id="subject">
+          <option value="">Selecteer een onderwerp</option>
+          <option>Boeking / optreden</option>
+          <option>Persverzoek</option>
+          <option>Samenwerking</option>
+          <option>Foundation / Novadic-Kentron</option>
+          <option>Anders</option>
+        </select>
+        <label for="message">Bericht</label>
+        <textarea id="message" placeholder="Jouw bericht…"></textarea>
+        <button type="submit" class="btn btn-primary" style="cursor:pointer;">Verstuur</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Jesus &amp; The Fishsticks</div>
+  <p>Eindhoven &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Blues &nbsp;·&nbsp; Rock-'n-Roll &nbsp;·&nbsp; Industriële Punk</p>
+  <p style="margin-top:.5rem;">
+    <a href="#about">Over ons</a> &nbsp;·&nbsp;
+    <a href="#music">Muziek</a> &nbsp;·&nbsp;
+    <a href="#shows">Shows</a> &nbsp;·&nbsp;
+    <a href="#contact">Contact</a>
+  </p>
+  <p style="margin-top:1.5rem; font-size:.7rem;">
+    Gebaseerd op een artikel van Frank van den Muijsenberg, Eindhovens Dagblad, 14 maart 2026
+  </p>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Contact form feedback
+  document.getElementById('contactForm').addEventListener('submit', function() {
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = 'Verstuurd ✓';
+    btn.style.background = '#2ecc71';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = 'Verstuur'; btn.style.background = ''; btn.style.color = ''; }, 3000);
+  });
+
+  // Newsletter feedback
+  document.querySelector('.newsletter-form').addEventListener('submit', function() {
+    const btn = this.querySelector('button');
+    btn.textContent = 'Ingeschreven ✓';
+    btn.style.background = '#2ecc71';
+    setTimeout(() => { btn.textContent = 'Inschrijven'; btn.style.background = ''; }, 3000);
+  });
+</script>
 </body>
 </html>
