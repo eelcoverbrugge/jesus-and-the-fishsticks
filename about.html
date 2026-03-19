@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Over ons — Jesus & The Fishsticks</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-body { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+    .about-text p { color: #bbb; margin-bottom: 1.2rem; }
+    .about-text p.lead { color: var(--light); font-size: 1.1rem; }
+    .pullquote {
+      background: var(--card); border-left: 4px solid var(--accent);
+      padding: 2rem; position: relative; margin-bottom: 2rem;
+    }
+    .pullquote::before {
+      content: '\201C'; font-family: Georgia, serif; font-size: 5rem;
+      color: var(--accent); opacity: .25; position: absolute; top: -.8rem; left: .8rem; line-height: 1;
+    }
+    .pullquote p { font-family: 'Oswald', sans-serif; font-size: 1.35rem; line-height: 1.35; color: var(--light); }
+    .pullquote cite { display: block; margin-top: 1rem; font-size: .8rem; font-style: normal; color: var(--mid); letter-spacing: .05em; }
+
+    /* Members */
+    .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; }
+    .member-card {
+      background: var(--card); border: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .member-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .member-avatar {
+      width: 80px; height: 80px; border-radius: 50%; background: #1a1a1a;
+      margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; border: 2px solid var(--border);
+    }
+    .member-card:hover .member-avatar { border-color: var(--accent); }
+    .member-name { font-family: 'Oswald', sans-serif; font-size: 1.15rem; text-transform: uppercase; margin-bottom: .2rem; }
+    .member-role { font-size: .75rem; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
+    .member-bio { font-size: .85rem; color: var(--mid); }
+
+    .staff-row { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .staff-item span { color: var(--mid); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: .2rem; }
+    .staff-item strong { color: var(--light); }
+
+    /* Foundation */
+    .foundation-box {
+      background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--red); padding: 2.5rem;
+    }
+    .foundation-box p { color: #bbb; margin-bottom: 1rem; }
+    .foundation-box p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 768px) {
+      .about-body { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">J&amp;TF</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html" class="active">Over ons</a></li>
+    <li><a href="music.html">Muziek</a></li>
+    <li><a href="shows.html">Shows</a></li>
+    <li><a href="gallery.html">Foto's</a></li>
+    <li><a href="press.html">Pers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <p class="section-label">Het verhaal</p>
+    <h1>Over <em>de band</em></h1>
+    <p class="sub">Een Eindhovens collectief met een bijzonder verhaal — gedreven door muziek, niet door therapie.</p>
+  </div>
+</header>
+
+<!-- VERHAAL -->
+<section>
+  <div class="container">
+    <p class="section-label">Oorsprong</p>
+    <h2 class="section-title">Hoe het begon</h2>
+    <div class="rule"></div>
+    <div class="about-body">
+      <div class="about-text">
+        <p class="lead">Jesus &amp; The Fishsticks trekken de aandacht met hun naam — en overtuigen met hun bijzondere verhaal.</p>
+        <p>Zanger en bassist Styn Pruijn filosofeerde ooit over een groep genaamd <em>The Fishsticks About Jesus</em>. Toen hij dat vertelde aan gitarist Willem Holthausen, bedacht die ter plekke de huidige naam. <em>"Ik ben overtuigd christen, maar dat heeft er niks mee te maken,"</em> benadrukt Pruijn.</p>
+        <p>Holthausen vult aan: <em>"Jezus is de bekendste persoon uit de geschiedenis, ook een soort popster. Dus we hebben meteen naamsbekendheid."</em></p>
+        <p>De organisatie achter de band is opgericht door Cor Verbrugge, medewerker bij Novadic-Kentron. Zijn doel: muzikale (ex-)cliënten uit de verslavingszorg of GGZ een professioneel podium geven. Onder leiding van coach Ruud Borgers — een ervaren Eindhovense muzikant — ging de groep repeteren en werken aan eigen nummers.</p>
+        <p>Borgers: <em>"De band is een organisme dat constant verandert. In het begin hadden de muzikanten alleen intenties voor de korte termijn. Op een gegeven moment is een band ontstaan. De songs die ze samen maken worden allemaal kinderen. Daar moet je voor zorgen."</em></p>
+        <p>Pruijn over de lange termijn: <em>"Voor een verslaafde voelt alles heel urgent; er moet nú iets gebeuren. Het is moeilijk een ruimte te creëren waarbinnen je kan groeien."</em> De band slaagde er toch in.</p>
+      </div>
+      <div>
+        <blockquote class="pullquote">
+          <p>De muziek zelf is de therapie en de uitlaatklep.</p>
+          <cite>— Ruud Borgers, coach van de band</cite>
+        </blockquote>
+        <blockquote class="pullquote">
+          <p>Het gaat ons niet om het verkopen van een plaat. We willen mensen kennis laten maken met de band.</p>
+          <cite>— Willem Holthausen, gitarist</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members" style="background: var(--dark);">
+  <div class="container">
+    <p class="section-label">De mensen</p>
+    <h2 class="section-title">Bandleden</h2>
+    <div class="rule"></div>
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="member-avatar">🎤</div>
+        <p class="member-name">Styn Pruijn</p>
+        <p class="member-role">Zang &amp; Bas</p>
+        <p class="member-bio">Initiatiefnemer en filosoof achter de bandnaam. Overtuigd christen met een scherp gevoel voor woorden en teksten.</p>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">🎸</div>
+        <p class="member-name">Willem Holthausen</p>
+        <p class="member-role">Gitaar</p>
+        <p class="member-bio">Bedacht ter plekke de naam Jesus &amp; The Fishsticks. Woordvoerder en creatieve motor van de band.</p>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">🎸</div>
+        <p class="member-name">Wim Reijnen</p>
+        <p class="member-role">Gitaar</p>
+        <p class="member-bio">Brengt textuur en diepte aan het gitaargeluid van de band.</p>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">🥁</div>
+        <p class="member-name">Robert Smissaert</p>
+        <p class="member-role">Drums</p>
+        <p class="member-bio">Gerekruteerd door Borgers; speelden eerder samen in rockband Bo/The Rude. <em>"Ik heb Robert gevraagd, omdat ik merkte dat hij echt behoefte had aan muziek."</em></p>
+      </div>
+    </div>
+    <div class="staff-row">
+      <div class="staff-item"><span>Coach</span><strong>Ruud Borgers</strong></div>
+      <div class="staff-item"><span>Oprichter</span><strong>Cor Verbrugge</strong></div>
+      <div class="staff-item"><span>Organisatie</span><strong>Novadic-Kentron Foundation</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDATION -->
+<section>
+  <div class="container">
+    <p class="section-label">Achtergrond</p>
+    <h2 class="section-title">De foundation</h2>
+    <div class="rule"></div>
+    <div class="foundation-box">
+      <p>Jesus &amp; The Fishsticks is <strong style="color:var(--light);">geen therapeutisch clubje</strong> voor ex-verslaafden. De muziek <em>zelf</em> is de therapie — en de uitlaatklep. De organisatie biedt muzikale (ex-)cliënten uit de verslavingszorg en GGZ een professioneel platform om te groeien als muzikant en als mens.</p>
+      <p>Borgers: <em>"De songs die ze samen maken worden allemaal kinderen. Daar moet je voor zorgen. Elke week was er een dag waarop ze er voor de band moesten zijn."</em> Die structuur en toewijding zijn de kern van het project.</p>
+      <p>Holthausen: <em>"Het gaat ons niet om het verkopen van een plaat. We willen mensen kennis laten maken met de band en de foundation waaruit we voortkomen."</em></p>
+    </div>
+    <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-outline">Contact opnemen</a>
+      <a href="press.html" class="btn btn-outline">Perskit</a>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter-bar">
+  <div class="inner">
+    <h3>Op de hoogte blijven</h3>
+    <p>Nieuws, shows en updates — rechtstreeks in je inbox.</p>
+    <form class="newsletter-form" onsubmit="return handleNL(event);">
+      <input type="email" placeholder="jouw@emailadres.nl" required />
+      <button type="submit" class="btn btn-primary">Inschrijven</button>
+    </form>
+    <p class="newsletter-fine">Geen spam. Afmelden kan altijd.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-logo">Jesus &amp; The Fishsticks</div>
+  <nav class="footer-nav">
+    <a href="about.html">Over ons</a><a href="music.html">Muziek</a><a href="shows.html">Shows</a>
+    <a href="gallery.html">Foto's</a><a href="shop.html">Shop</a><a href="press.html">Pers</a><a href="contact.html">Contact</a>
+  </nav>
+  <p>Eindhoven · 2026</p>
+</footer>
+
+<script>
+  const t = document.getElementById('navToggle'), l = document.getElementById('navLinks');
+  t.addEventListener('click', () => l.classList.toggle('open'));
+  l.querySelectorAll('a').forEach(a => a.addEventListener('click', () => l.classList.remove('open')));
+  function handleNL(e) {
+    e.preventDefault(); const b = e.target.querySelector('button');
+    b.textContent = 'Ingeschreven ✓'; b.style.background = '#2ecc71';
+    setTimeout(() => { b.textContent = 'Inschrijven'; b.style.background = ''; }, 3000);
+  }
+</script>
+</body>
+</html>

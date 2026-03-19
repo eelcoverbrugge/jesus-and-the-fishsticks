@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foto's & Video — Jesus & The Fishsticks</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Filter tabs */
+    .filter-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-tab {
+      font-family: 'Oswald', sans-serif; font-size: .78rem; letter-spacing: .12em;
+      text-transform: uppercase; padding: .55rem 1.2rem; cursor: pointer;
+      border: 1px solid var(--border); color: var(--mid); background: transparent;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .filter-tab:hover, .filter-tab.active { border-color: var(--accent); color: var(--black); background: var(--accent); }
+
+    /* Photo grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+    }
+    .gallery-item {
+      background: var(--card); border: 1px solid var(--border);
+      aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .gallery-item.tall { aspect-ratio: 3/4; grid-row: span 2; }
+    .gallery-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
+
+    .gallery-placeholder { font-size: 3.5rem; opacity: .12; user-select: none; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: .75rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,.85));
+      font-size: .78rem; letter-spacing: .05em;
+      transform: translateY(100%); transition: transform .25s;
+    }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+    .gallery-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,.5);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .25s;
+      font-family: 'Oswald', sans-serif; font-size: .8rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* Video section */
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .video-card {
+      background: var(--card); border: 1px solid var(--border); overflow: hidden;
+      transition: border-color .2s;
+    }
+    .video-card:hover { border-color: var(--accent); }
+    .video-thumb {
+      aspect-ratio: 16/9; background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; opacity: .25; position: relative;
+    }
+    .play-btn {
+      position: absolute; width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent); display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--black); opacity: .9; cursor: pointer;
+      transition: transform .2s, opacity .2s;
+    }
+    .video-card:hover .play-btn { transform: scale(1.1); opacity: 1; }
+    .video-info { padding: 1.25rem; }
+    .video-info h4 { font-family: 'Oswald', sans-serif; font-size: 1rem; text-transform: uppercase; margin-bottom: .3rem; }
+    .video-info p { font-size: .82rem; color: var(--mid); }
+
+    /* Upload note */
+    .press-note {
+      background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+      padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1.5rem;
+    }
+    .press-note .icon { font-size: 2rem; flex-shrink: 0; }
+    .press-note p { color: #bbb; font-size: .9rem; }
+    .press-note p strong { color: var(--light); }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.tall { aspect-ratio: 4/3; grid-row: span 1; }
+      .gallery-item.wide { grid-column: span 1; aspect-ratio: 4/3; }
+      .video-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">J&amp;TF</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">Over ons</a></li>
+    <li><a href="music.html">Muziek</a></li>
+    <li><a href="shows.html">Shows</a></li>
+    <li><a href="gallery.html" class="active">Foto's</a></li>
+    <li><a href="press.html">Pers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <p class="section-label">Beeldmateriaal</p>
+    <h1>Foto's &amp;<br><em>Video</em></h1>
+    <p class="sub">Persmateriaal, livefoto's en behind-the-scenes van Jesus &amp; The Fishsticks.</p>
+  </div>
+</header>
+
+<!-- PHOTO GALLERY -->
+<section>
+  <div class="container">
+    <p class="section-label">Fotografie</p>
+    <h2 class="section-title">Galerij</h2>
+    <div class="rule"></div>
+
+    <div class="filter-tabs">
+      <button class="filter-tab active">Alles</button>
+      <button class="filter-tab">Live</button>
+      <button class="filter-tab">Band</button>
+      <button class="filter-tab">Studio</button>
+      <button class="filter-tab">Behind the scenes</button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <span class="gallery-placeholder">🎸🎤🥁</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Releaseshow — PopEi, Klokgebouw · 14 mrt 2026</div>
+      </div>
+      <div class="gallery-item tall">
+        <span class="gallery-placeholder">🎤</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Styn Pruijn — Zang &amp; Bas</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎸</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Willem Holthausen — Gitaar</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎸</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Wim Reijnen — Gitaar</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🥁</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Robert Smissaert — Drums</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎵</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">In de studio · 2025</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🎶</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Repetitie · Eindhoven</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-placeholder">🏭</span>
+        <div class="gallery-overlay">Bekijk foto</div>
+        <div class="gallery-caption">Klokgebouw · PopEi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section style="background: var(--dark);">
+  <div class="container">
+    <p class="section-label">Film</p>
+    <h2 class="section-title">Video</h2>
+    <div class="rule"></div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumb">
+          🎬
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <h4>Releaseshow — Live @ PopEi</h4>
+          <p>Volledige opname van de releaseshow in het Klokgebouw, 14 maart 2026</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          🎥
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <h4>Behind the scenes — Studio</h4>
+          <p>De opnames van 'Straight from the can' van binnenuit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS NOTE -->
+<section>
+  <div class="container">
+    <div class="press-note">
+      <span class="icon">📦</span>
+      <div>
+        <p><strong>Persmateriaal nodig?</strong> Hi-res persfoto's en bandmateriaal zijn beschikbaar via de perskit. Download alles wat je nodig hebt voor publicatie.</p>
+        <div style="margin-top:1rem;">
+          <a href="press.html" class="btn btn-outline btn-sm">Naar de perskit →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-logo">Jesus &amp; The Fishsticks</div>
+  <nav class="footer-nav">
+    <a href="about.html">Over ons</a><a href="music.html">Muziek</a><a href="shows.html">Shows</a>
+    <a href="gallery.html">Foto's</a><a href="shop.html">Shop</a><a href="press.html">Pers</a><a href="contact.html">Contact</a>
+  </nav>
+  <p>Eindhoven · 2026</p>
+</footer>
+
+<script>
+  const t = document.getElementById('navToggle'), l = document.getElementById('navLinks');
+  t.addEventListener('click', () => l.classList.toggle('open'));
+  l.querySelectorAll('a').forEach(a => a.addEventListener('click', () => l.classList.remove('open')));
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
