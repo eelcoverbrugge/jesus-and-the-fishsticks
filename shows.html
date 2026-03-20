@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shows — Jesus & The Fishsticks</title>
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('jtf-theme')||'dark');</script>
   <style>
     .shows-list { display: flex; flex-direction: column; gap: 1px; }
     .show-item {
@@ -16,25 +17,25 @@
     .show-item:hover { border-color: var(--accent); }
     .show-item.past { opacity: .45; }
     .show-date-box { text-align: center; }
-    .show-day { font-family: 'Oswald', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
-    .show-month { font-family: 'Oswald', sans-serif; font-size: .9rem; text-transform: uppercase; letter-spacing: .1em; color: var(--light); }
+    .show-day { font-family: var(--font-h); font-size: 2.5rem; color: var(--accent); line-height: 1; }
+    .show-month { font-family: var(--font-h); font-size: .9rem; text-transform: uppercase; letter-spacing: .1em; color: var(--light); }
     .show-year { font-size: .75rem; color: var(--mid); }
 
-    .show-details h4 { font-family: 'Oswald', sans-serif; font-size: 1.2rem; text-transform: uppercase; margin-bottom: .3rem; }
+    .show-details h4 { font-family: var(--font-h); font-size: 1.2rem; text-transform: uppercase; margin-bottom: .3rem; }
     .show-venue { color: var(--mid); font-size: .9rem; margin-bottom: .4rem; }
     .show-support { font-size: .78rem; color: var(--muted); }
     .show-tags { display: flex; gap: .5rem; margin-top: .6rem; flex-wrap: wrap; }
     .show-tag { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .65rem; background: #1a1a1a; border: 1px solid var(--border); color: var(--mid); }
 
     .show-action { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; }
-    .badge { font-family: 'Oswald', sans-serif; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .9rem; white-space: nowrap; }
+    .badge { font-family: var(--font-h); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .9rem; white-space: nowrap; }
     .badge-free    { background: var(--accent); color: var(--black); }
     .badge-past    { border: 1px solid var(--muted); color: var(--muted); background: transparent; }
     .badge-tba     { border: 1px solid #333; color: var(--mid); background: transparent; }
     .badge-tickets { background: var(--red); color: #fff; }
 
     .shows-section-title {
-      font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: .2em;
+      font-family: var(--font-h); font-size: 1rem; letter-spacing: .2em;
       text-transform: uppercase; color: var(--mid); margin: 2.5rem 0 1rem;
       padding-bottom: .5rem; border-bottom: 1px solid var(--border);
     }
@@ -44,7 +45,7 @@
       border-left: 4px solid var(--accent); padding: 2.5rem;
       display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;
     }
-    .booking-box h3 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; margin-bottom: .5rem; }
+    .booking-box h3 { font-family: var(--font-h); font-size: 1.5rem; text-transform: uppercase; margin-bottom: .5rem; }
     .booking-box p { color: var(--mid); font-size: .9rem; }
 
     @media (max-width: 640px) {
@@ -58,12 +59,13 @@
 <nav>
   <a class="nav-logo" href="index.html">J&amp;TF</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">Over ons</a></li>
     <li><a href="music.html">Muziek</a></li>
     <li><a href="shows.html" class="active">Shows</a></li>
     <li><a href="gallery.html">Foto's</a></li>
     <li><a href="press.html">Pers</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta"><a href="contact.html">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -160,5 +162,6 @@
   t.addEventListener('click', () => l.classList.toggle('open'));
   l.querySelectorAll('a').forEach(a => a.addEventListener('click', () => l.classList.remove('open')));
 </script>
+<script src="theme-switcher.js" defer></script>
 </body>
 </html>

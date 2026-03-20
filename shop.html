@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop — Jesus & The Fishsticks</title>
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('jtf-theme')||'dark');</script>
   <style>
     .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
 
@@ -23,21 +24,21 @@
     .product-image .badge-new {
       position: absolute; top: 1rem; left: 1rem;
       background: var(--red); color: #fff;
-      font-family: 'Oswald', sans-serif; font-size: .7rem; letter-spacing: .1em;
+      font-family: var(--font-h); font-size: .7rem; letter-spacing: .1em;
       text-transform: uppercase; padding: .3rem .75rem;
     }
     .product-image .badge-sold {
       position: absolute; top: 1rem; right: 1rem;
       background: var(--muted); color: #fff;
-      font-family: 'Oswald', sans-serif; font-size: .7rem; letter-spacing: .1em;
+      font-family: var(--font-h); font-size: .7rem; letter-spacing: .1em;
       text-transform: uppercase; padding: .3rem .75rem;
     }
 
     .product-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .75rem; }
-    .product-name { font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-transform: uppercase; }
+    .product-name { font-family: var(--font-h); font-size: 1.1rem; text-transform: uppercase; }
     .product-desc { font-size: .85rem; color: var(--mid); flex: 1; }
     .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .product-price { font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: var(--accent); }
+    .product-price { font-family: var(--font-h); font-size: 1.3rem; color: var(--accent); }
     .product-price .old { font-size: .85rem; color: var(--muted); text-decoration: line-through; margin-right: .4rem; }
 
     /* Sizes */
@@ -45,7 +46,7 @@
     .size-btn {
       width: 34px; height: 34px; border: 1px solid var(--border);
       background: none; color: var(--mid); font-size: .78rem; cursor: pointer;
-      font-family: 'Oswald', sans-serif; transition: border-color .15s, color .15s, background .15s;
+      font-family: var(--font-h); transition: border-color .15s, color .15s, background .15s;
     }
     .size-btn:hover, .size-btn.active { border-color: var(--accent); color: var(--black); background: var(--accent); }
     .size-btn:disabled { opacity: .3; cursor: not-allowed; }
@@ -57,7 +58,7 @@
     }
     .merch-info-item { background: var(--card); padding: 1.5rem 2rem; }
     .merch-info-item .i-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--mid); margin-bottom: .4rem; }
-    .merch-info-item .i-val { font-family: 'Oswald', sans-serif; font-size: 1rem; color: var(--light); }
+    .merch-info-item .i-val { font-family: var(--font-h); font-size: 1rem; color: var(--light); }
 
     @media (max-width: 640px) {
       .merch-info-bar { grid-template-columns: 1fr; }
@@ -69,12 +70,13 @@
 <nav>
   <a class="nav-logo" href="index.html">J&amp;TF</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">Over ons</a></li>
     <li><a href="music.html">Muziek</a></li>
     <li><a href="shows.html">Shows</a></li>
     <li><a href="gallery.html">Foto's</a></li>
     <li><a href="press.html">Pers</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta"><a href="contact.html">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -207,7 +209,7 @@
     </p>
 
     <!-- Cart toast -->
-    <div id="cartToast" style="position:fixed; bottom:2rem; right:2rem; background:var(--accent); color:var(--black); font-family:'Oswald',sans-serif; font-size:.9rem; letter-spacing:.08em; text-transform:uppercase; padding:1rem 1.75rem; display:none; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,.5);">
+    <div id="cartToast" style="position:fixed; bottom:2rem; right:2rem; background:var(--accent); color:var(--black); font-family:var(--font-h); font-size:.9rem; letter-spacing:.08em; text-transform:uppercase; padding:1rem 1.75rem; display:none; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,.5);">
       ✓ Toegevoegd aan winkelwagen
     </div>
   </div>
@@ -258,5 +260,6 @@
     setTimeout(() => { b.textContent = 'Inschrijven'; b.style.background = ''; }, 3000);
   }
 </script>
+<script src="theme-switcher.js" defer></script>
 </body>
 </html>

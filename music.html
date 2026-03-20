@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muziek — Jesus & The Fishsticks</title>
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('jtf-theme')||'dark');</script>
   <style>
     .ep-layout { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
 
@@ -23,18 +24,18 @@
     .ep-vinyl-label {
       width: 62px; height: 62px; border-radius: 50%; background: var(--accent); border: 2px solid #c8a830;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-family: 'Oswald', sans-serif; font-size: .45rem; letter-spacing: .05em;
+      font-family: var(--font-h); font-size: .45rem; letter-spacing: .05em;
       text-transform: uppercase; color: var(--black); text-align: center; line-height: 1.3;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .ep-title { font-family: 'Oswald', sans-serif; font-size: 1.3rem; text-transform: uppercase; color: var(--accent); text-align: center; }
+    .ep-title { font-family: var(--font-h); font-size: 1.3rem; text-transform: uppercase; color: var(--accent); text-align: center; }
     .ep-sub { font-size: .75rem; color: var(--mid); letter-spacing: .1em; text-transform: uppercase; }
 
     .genre-tags { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
     .tag { background: #1a1a1a; border: 1px solid var(--border); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .75rem; color: var(--light); }
 
     /* Streaming */
-    .stream-section h3 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .stream-section h3 { font-family: var(--font-h); font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.5rem; }
     .stream-list { display: flex; flex-direction: column; gap: .75rem; }
     .stream-btn {
       display: flex; align-items: center; gap: 1rem;
@@ -44,7 +45,7 @@
     }
     .stream-btn:hover { border-color: var(--accent); transform: translateX(4px); }
     .stream-btn .s-icon { font-size: 1.4rem; width: 30px; text-align: center; }
-    .stream-btn .s-label { font-family: 'Oswald', sans-serif; letter-spacing: .08em; text-transform: uppercase; font-size: 1rem; }
+    .stream-btn .s-label { font-family: var(--font-h); letter-spacing: .08em; text-transform: uppercase; font-size: 1rem; }
     .stream-btn .s-sub { font-size: .78rem; color: var(--mid); }
     .stream-btn .s-arrow { margin-left: auto; color: var(--accent); font-size: 1.1rem; }
 
@@ -56,7 +57,7 @@
     .soundbite {
       background: var(--card); border-left: 4px solid var(--accent);
       padding: 1.5rem 2rem; margin: 2rem 0;
-      font-family: 'Oswald', sans-serif; font-size: 1.2rem; color: var(--light); line-height: 1.4;
+      font-family: var(--font-h); font-size: 1.2rem; color: var(--light); line-height: 1.4;
     }
     .soundbite cite { display: block; font-size: .78rem; font-style: normal; color: var(--mid); margin-top: .75rem; }
 
@@ -71,12 +72,13 @@
 <nav>
   <a class="nav-logo" href="index.html">J&amp;TF</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">Over ons</a></li>
     <li><a href="music.html" class="active">Muziek</a></li>
     <li><a href="shows.html">Shows</a></li>
     <li><a href="gallery.html">Foto's</a></li>
     <li><a href="press.html">Pers</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta"><a href="contact.html">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -187,5 +189,6 @@
     setTimeout(() => { b.textContent = 'Inschrijven'; b.style.background = ''; }, 3000);
   }
 </script>
+<script src="theme-switcher.js" defer></script>
 </body>
 </html>

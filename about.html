@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Over ons — Jesus & The Fishsticks</title>
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('jtf-theme')||'dark');</script>
   <style>
     .about-body { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
     .about-text p { color: #bbb; margin-bottom: 1.2rem; }
@@ -17,7 +18,7 @@
       content: '\201C'; font-family: Georgia, serif; font-size: 5rem;
       color: var(--accent); opacity: .25; position: absolute; top: -.8rem; left: .8rem; line-height: 1;
     }
-    .pullquote p { font-family: 'Oswald', sans-serif; font-size: 1.35rem; line-height: 1.35; color: var(--light); }
+    .pullquote p { font-family: var(--font-h); font-size: 1.35rem; line-height: 1.35; color: var(--light); }
     .pullquote cite { display: block; margin-top: 1rem; font-size: .8rem; font-style: normal; color: var(--mid); letter-spacing: .05em; }
 
     /* Members */
@@ -33,7 +34,7 @@
       font-size: 2rem; border: 2px solid var(--border);
     }
     .member-card:hover .member-avatar { border-color: var(--accent); }
-    .member-name { font-family: 'Oswald', sans-serif; font-size: 1.15rem; text-transform: uppercase; margin-bottom: .2rem; }
+    .member-name { font-family: var(--font-h); font-size: 1.15rem; text-transform: uppercase; margin-bottom: .2rem; }
     .member-role { font-size: .75rem; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
     .member-bio { font-size: .85rem; color: var(--mid); }
 
@@ -58,12 +59,13 @@
 <nav>
   <a class="nav-logo" href="index.html">J&amp;TF</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html" class="active">Over ons</a></li>
     <li><a href="music.html">Muziek</a></li>
     <li><a href="shows.html">Shows</a></li>
     <li><a href="gallery.html">Foto's</a></li>
     <li><a href="press.html">Pers</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta"><a href="contact.html">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -194,5 +196,6 @@
     setTimeout(() => { b.textContent = 'Inschrijven'; b.style.background = ''; }, 3000);
   }
 </script>
+<script src="theme-switcher.js" defer></script>
 </body>
 </html>

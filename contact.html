@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Jesus & The Fishsticks</title>
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('jtf-theme')||'dark');</script>
   <style>
     .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
 
@@ -13,9 +14,9 @@
       background: var(--card); border: 1px solid var(--border); padding: 1.75rem;
     }
     .contact-block .label { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--red); margin-bottom: .6rem; }
-    .contact-block h4 { font-family: 'Oswald', sans-serif; font-size: 1.05rem; text-transform: uppercase; margin-bottom: .4rem; }
+    .contact-block h4 { font-family: var(--font-h); font-size: 1.05rem; text-transform: uppercase; margin-bottom: .4rem; }
     .contact-block p { font-size: .88rem; color: var(--mid); margin-bottom: .75rem; }
-    .contact-block a { color: var(--accent); text-decoration: none; font-family: 'Oswald', sans-serif; font-size: 1rem; }
+    .contact-block a { color: var(--accent); text-decoration: none; font-family: var(--font-h); font-size: 1rem; }
     .contact-block a:hover { text-decoration: underline; }
 
     .socials { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: .5rem; }
@@ -29,12 +30,12 @@
 
     /* Form */
     .form-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; }
-    .form-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.75rem; }
+    .form-card h3 { font-family: var(--font-h); font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.75rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-success {
       display: none; background: #0f2a1a; border: 1px solid #1a4a2a;
       padding: 1.5rem; text-align: center; margin-top: 1rem;
-      font-family: 'Oswald', sans-serif; font-size: 1.1rem; color: #2ecc71;
+      font-family: var(--font-h); font-size: 1.1rem; color: #2ecc71;
     }
 
     @media (max-width: 768px) {
@@ -48,12 +49,13 @@
 <nav>
   <a class="nav-logo" href="index.html">J&amp;TF</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">Over ons</a></li>
     <li><a href="music.html">Muziek</a></li>
     <li><a href="shows.html">Shows</a></li>
     <li><a href="gallery.html">Foto's</a></li>
     <li><a href="press.html">Pers</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
+    <li class="nav-cta"><a href="contact.html" class="active">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -159,5 +161,6 @@
     return false;
   }
 </script>
+<script src="theme-switcher.js" defer></script>
 </body>
 </html>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perskit — Jesus & The Fishsticks</title>
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('jtf-theme')||'dark');</script>
   <style>
     /* Kit cards */
     .kit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
@@ -15,7 +16,7 @@
     }
     .kit-card:hover { border-color: var(--accent); }
     .kit-icon { font-size: 2.2rem; }
-    .kit-card h4 { font-family: 'Oswald', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; }
+    .kit-card h4 { font-family: var(--font-h); font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; }
     .kit-card p { font-size: .85rem; color: var(--mid); flex: 1; }
 
     /* News items */
@@ -27,7 +28,7 @@
     }
     .news-item:hover { border-color: var(--accent); }
     .news-source { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--red); margin-bottom: .4rem; }
-    .news-title { font-family: 'Oswald', sans-serif; font-size: 1.2rem; margin-bottom: .4rem; }
+    .news-title { font-family: var(--font-h); font-size: 1.2rem; margin-bottom: .4rem; }
     .news-meta { font-size: .82rem; color: var(--mid); }
     .news-excerpt { font-size: .88rem; color: #999; margin-top: .6rem; font-style: italic; }
 
@@ -45,9 +46,9 @@
       padding: 2.5rem; display: flex; justify-content: space-between; align-items: center;
       gap: 2rem; flex-wrap: wrap;
     }
-    .press-contact h3 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; text-transform: uppercase; margin-bottom: .4rem; }
+    .press-contact h3 { font-family: var(--font-h); font-size: 1.4rem; text-transform: uppercase; margin-bottom: .4rem; }
     .press-contact p { color: var(--mid); font-size: .9rem; }
-    .press-contact a.email { display: block; margin-top: .75rem; color: var(--accent); font-family: 'Oswald', sans-serif; font-size: 1.05rem; text-decoration: none; }
+    .press-contact a.email { display: block; margin-top: .75rem; color: var(--accent); font-family: var(--font-h); font-size: 1.05rem; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -55,12 +56,13 @@
 <nav>
   <a class="nav-logo" href="index.html">J&amp;TF</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">Over ons</a></li>
     <li><a href="music.html">Muziek</a></li>
     <li><a href="shows.html">Shows</a></li>
     <li><a href="gallery.html">Foto's</a></li>
     <li><a href="press.html" class="active">Pers</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta"><a href="contact.html">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -190,5 +192,6 @@
   t.addEventListener('click', () => l.classList.toggle('open'));
   l.querySelectorAll('a').forEach(a => a.addEventListener('click', () => l.classList.remove('open')));
 </script>
+<script src="theme-switcher.js" defer></script>
 </body>
 </html>
