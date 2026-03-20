@@ -69,7 +69,7 @@ export default function ThemeSwitcher() {
         panel &&
         btn &&
         !panel.contains(e.target as Node) &&
-        e.target !== btn
+        !btn.contains(e.target as Node)
       ) {
         setIsOpen(false);
       }

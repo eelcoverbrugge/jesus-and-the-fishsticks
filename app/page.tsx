@@ -140,16 +140,32 @@ export default function Home() {
         .merch-item .name { font-family: var(--font-h); font-size: 1rem; text-transform: uppercase; }
         .merch-item .price { font-size: .9rem; color: var(--accent); }
 
+        /* ── GALLERY PREVIEW ── */
+        .gallery-preview-grid {
+          display: grid; grid-template-columns: repeat(4,1fr); gap: .75rem; margin-bottom: 1.5rem;
+        }
+        /* ── CONTACT TEASER ── */
+        .contact-teaser-grid {
+          display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+        }
+        /* ── ABOUT TEASER ── */
+        .about-teaser-grid { max-width: 600px; }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
           .teaser-grid { grid-template-columns: 1fr 1fr; }
+          .about-teaser-grid { grid-template-columns: 1fr 1fr; }
           .ep-teaser { grid-template-columns: 1fr; }
           .ep-vinyl { width: 140px; height: 140px; }
           .show-teaser { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2rem; }
           .merch-strip { grid-template-columns: 1fr; }
+          .gallery-preview-grid { grid-template-columns: repeat(2,1fr); }
+          .contact-teaser-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
           .teaser-grid { grid-template-columns: 1fr; }
+          .about-teaser-grid { grid-template-columns: 1fr; }
+          .gallery-preview-grid { grid-template-columns: repeat(2,1fr); }
         }
       `}</style>
 
@@ -188,7 +204,7 @@ export default function Home() {
           <p style={{ color: '#bbb', maxWidth: '640px', marginBottom: '2rem', fontSize: '1.05rem' }}>
             Jesus &amp; The Fishsticks is een Eindhovens collectief dat muzikale (ex-)cliënten uit de verslavingszorg een professioneel podium geeft. Opgericht door Cor Verbrugge, begeleid door coach Ruud Borgers — en gedreven door de muziek zelf.
           </p>
-          <div className="teaser-grid" style={{ gridTemplateColumns: 'repeat(2,1fr)', maxWidth: '600px' }}>
+          <div className="teaser-grid about-teaser-grid">
             <Link className="teaser-card" href="/about">
               <span className="icon">🎸</span>
               <h3>Over de band</h3>
@@ -261,7 +277,7 @@ export default function Home() {
           <p className="section-label">Beeldmateriaal</p>
           <h2 className="section-title">Foto &amp; Video</h2>
           <div className="rule"></div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '.75rem', marginBottom: '1.5rem' }}>
+          <div className="gallery-preview-grid">
             {['🎸', '🎤', '🥁', '🎶'].map((emoji, i) => (
               <div key={i} style={{ background: 'var(--card)', border: '1px solid var(--border)', aspectRatio: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', opacity: '.6' }}>{emoji}</div>
             ))}
@@ -337,7 +353,7 @@ export default function Home() {
 
       {/* CONTACT TEASER */}
       <section>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+        <div className="container contact-teaser-grid">
           <div>
             <p className="section-label">Boekingen</p>
             <h2 className="section-title">Wil je de band boeken?</h2>

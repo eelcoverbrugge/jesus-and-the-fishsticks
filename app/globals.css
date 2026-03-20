@@ -398,9 +398,15 @@ form select option { background: var(--dark); }
   .nav-toggle { display: block; }
   .nav-links a { padding: .4rem 0; }
   .nav-links li.nav-cta a { margin-left: 0; padding: .5rem 1.2rem; display: inline-flex; width: fit-content; }
+
+  section { padding: 3rem 0; }
+  .container { padding: 0 1.25rem; }
+  .page-header { padding: 6rem 0 2.5rem; }
 }
 @media (max-width: 480px) {
-  .page-header { padding: 7rem 0 3rem; }
+  .page-header { padding: 5.5rem 0 2rem; }
+  section { padding: 2.5rem 0; }
+  .container { padding: 0 1rem; }
 }
 
 /* ════════════════════════════════════════════
