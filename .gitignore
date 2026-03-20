@@ -1,0 +1,12 @@
+# Next.js
+.next/
+out/
+node_modules/
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# General
+.DS_Store
+*.local
+.env*
+!.env.example
