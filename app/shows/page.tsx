@@ -1,11 +1,96 @@
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
+import { getUpcomingShows, getPastShows, type Show } from '@/lib/sanity';
+
+export const revalidate = 60;
 
 export const metadata = {
   title: 'Shows — Jesus & The Fishsticks',
 };
 
-export default function ShowsPage() {
+// ── Helpers ───────────────────────────────────────────────────────────
+
+function formatDay(dateStr: string) {
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? '?' : d.getDate().toString();
+}
+
+function formatMonth(dateStr: string) {
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? '' : d.toLocaleDateString('nl-NL', { month: 'short' });
+}
+
+function formatYear(dateStr: string) {
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? '' : d.getFullYear().toString();
+}
+
+function StatusBadge({ status, price }: { status: Show['status']; price?: string }) {
+  const map: Record<Show['status'], { cls: string; label: string }> = {
+    upcoming:   { cls: 'badge-free',    label: price || 'Aankomend' },
+    tba:        { cls: 'badge-tba',     label: 'Binnenkort' },
+    'sold-out': { cls: 'badge-tickets', label: 'Uitverkocht' },
+    past:       { cls: 'badge-past',    label: 'Geweest' },
+  };
+  const { cls, label } = map[status] ?? map.tba;
+  return <span className={`badge ${cls}`}>{label}</span>;
+}
+
+function ShowItem({ show, isPast }: { show: Show; isPast?: boolean }) {
+  return (
+    <div className={`show-item${isPast ? ' past' : ''}`}>
+      <div className="show-date-box">
+        {show.status === 'tba' ? (
+          <>
+            <div className="show-day">TBA</div>
+            <div className="show-month">{formatYear(show.date)}</div>
+          </>
+        ) : (
+          <>
+            <div className="show-day">{formatDay(show.date)}</div>
+            <div className="show-month">{formatMonth(show.date)}</div>
+            <div className="show-year">{formatYear(show.date)}</div>
+          </>
+        )}
+      </div>
+      <div className="show-details">
+        <h4>{show.title}</h4>
+        <p className="show-venue">
+          {[show.venue, show.city].filter(Boolean).join(' · ')}
+          {show.doorsOpen && ` · Zaal open: ${show.doorsOpen}`}
+        </p>
+        {show.guestActs && (
+          <p className="show-support">Met speciale gasten: {show.guestActs}</p>
+        )}
+        {show.notes && <p className="show-support">{show.notes}</p>}
+        {show.tags && show.tags.length > 0 && (
+          <div className="show-tags">
+            {show.tags.map((tag) => (
+              <span key={tag} className="show-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="show-action">
+        <StatusBadge status={show.status} price={show.price} />
+        {show.ticketUrl && show.status !== 'past' && (
+          <a href={show.ticketUrl} className="badge badge-tickets" target="_blank" rel="noopener noreferrer">
+            Tickets →
+          </a>
+        )}
+        {show.price && show.price !== show.status && show.status === 'upcoming' && (
+          <span className="badge badge-free">{show.price}</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Page ──────────────────────────────────────────────────────────────
+
+export default async function ShowsPage() {
+  const [upcoming, past] = await Promise.all([getUpcomingShows(), getPastShows()]);
+
   return (
     <>
       <style>{`
@@ -28,7 +113,7 @@ export default function ShowsPage() {
         .show-tags { display: flex; gap: .5rem; margin-top: .6rem; flex-wrap: wrap; }
         .show-tag { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .65rem; background: #1a1a1a; border: 1px solid var(--border); color: var(--mid); }
         .show-action { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; }
-        .badge { font-family: var(--font-h); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .9rem; white-space: nowrap; }
+        .badge { font-family: var(--font-h); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .9rem; white-space: nowrap; text-decoration: none; }
         .badge-free    { background: var(--accent); color: var(--black); }
         .badge-past    { border: 1px solid var(--muted); color: var(--muted); background: transparent; }
         .badge-tba     { border: 1px solid #333; color: var(--mid); background: transparent; }
@@ -38,6 +123,7 @@ export default function ShowsPage() {
           text-transform: uppercase; color: var(--mid); margin: 2.5rem 0 1rem;
           padding-bottom: .5rem; border-bottom: 1px solid var(--border);
         }
+        .no-shows { color: var(--mid); font-size: .9rem; padding: 1.5rem 0; }
         .booking-box {
           background: var(--card); border: 1px solid var(--border);
           border-left: 4px solid var(--accent); padding: 2.5rem;
@@ -63,51 +149,30 @@ export default function ShowsPage() {
           <h2 className="section-title">Komende optredens</h2>
           <div className="rule"></div>
 
-          <div className="shows-list">
-            <div className="show-item">
-              <div className="show-date-box">
-                <div className="show-day">TBA</div>
-                <div className="show-month">2026</div>
-              </div>
-              <div className="show-details">
-                <h4>Volgende show — Binnenkort bekend</h4>
-                <p className="show-venue">Locatie nog te bevestigen &nbsp;·&nbsp; Eindhoven e.o.</p>
-                <p className="show-support">Houd de socials in de gaten voor updates</p>
-              </div>
-              <div className="show-action">
-                <span className="badge badge-tba">Binnenkort</span>
-              </div>
+          {upcoming.length > 0 ? (
+            <div className="shows-list">
+              {upcoming.map((show) => (
+                <ShowItem key={show._id} show={show} />
+              ))}
             </div>
-          </div>
+          ) : (
+            <p className="no-shows">Nog geen shows gepland — houd de socials in de gaten.</p>
+          )}
 
           <p style={{ color: 'var(--mid)', fontSize: '.85rem', marginTop: '1.5rem' }}>
             Wil je de band boeken? <Link href="/contact" style={{ color: 'var(--accent)' }}>Neem contact op →</Link>
           </p>
 
-          <p className="shows-section-title">Geweest</p>
-          <div className="shows-list">
-            <div className="show-item past">
-              <div className="show-date-box">
-                <div className="show-day">14</div>
-                <div className="show-month">Mrt</div>
-                <div className="show-year">2026</div>
+          {past.length > 0 && (
+            <>
+              <p className="shows-section-title">Geweest</p>
+              <div className="shows-list">
+                {past.map((show) => (
+                  <ShowItem key={show._id} show={show} isPast />
+                ))}
               </div>
-              <div className="show-details">
-                <h4>Releaseshow — Straight from the can</h4>
-                <p className="show-venue">PopEi &nbsp;·&nbsp; Klokgebouw, Eindhoven &nbsp;·&nbsp; Zaal open: 20:00</p>
-                <p className="show-support">Met speciale gasten: Mavaotic &amp; Brechtje</p>
-                <div className="show-tags">
-                  <span className="show-tag">Releaseshow</span>
-                  <span className="show-tag">Debut EP</span>
-                  <span className="show-tag">Gratis toegang</span>
-                </div>
-              </div>
-              <div className="show-action">
-                <span className="badge badge-past">Geweest</span>
-                <span className="badge badge-free">Gratis</span>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </section>
 
