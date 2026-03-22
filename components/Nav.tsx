@@ -9,8 +9,9 @@ const navLinks = [
   { href: '/about', label: 'Over ons' },
   { href: '/music', label: 'Muziek' },
   { href: '/shows', label: 'Shows' },
-  { href: '/gallery', label: "Foto's" },
+  { href: "/gallery", label: "Foto's" },
   { href: '/press', label: 'Pers' },
+  // shop bewust weggelaten
 ];
 
 export default function Nav() {
