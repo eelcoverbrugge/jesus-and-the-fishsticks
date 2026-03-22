@@ -7,14 +7,54 @@ import PageHeader from '@/components/PageHeader';
 const FILTER_TABS = ['Alles', 'Live', 'Band', 'Studio', 'Behind the scenes'];
 
 const GALLERY_ITEMS = [
-  { className: 'wide', emoji: '🎸🎤🥁', caption: 'Releaseshow — PopEi, Klokgebouw · 14 mrt 2026' },
-  { className: 'tall', emoji: '🎤', caption: 'Styn Pruijn — Zang & Bas' },
-  { className: '', emoji: '🎸', caption: 'Willem Holthausen — Gitaar' },
-  { className: '', emoji: '🎸', caption: 'Wim Reijnen — Gitaar' },
-  { className: '', emoji: '🥁', caption: 'Robert Smissaert — Drums' },
-  { className: '', emoji: '🎵', caption: 'In de studio · 2025' },
-  { className: '', emoji: '🎶', caption: 'Repetitie · Eindhoven' },
-  { className: '', emoji: '🏭', caption: 'Klokgebouw · PopEi' },
+  {
+    className: 'wide',
+    img: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&h=675&fit=crop&q=80',
+    caption: 'Releaseshow — PopEi, Klokgebouw · 14 mrt 2026',
+    category: 'Live',
+  },
+  {
+    className: 'tall',
+    img: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=600&h=800&fit=crop&q=80',
+    caption: 'Styn Pruijn — Zang & Bas',
+    category: 'Band',
+  },
+  {
+    className: '',
+    img: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&h=600&fit=crop&q=80',
+    caption: 'Willem Holthausen — Gitaar',
+    category: 'Band',
+  },
+  {
+    className: '',
+    img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop&q=80',
+    caption: 'Wim Reijnen — Gitaar',
+    category: 'Live',
+  },
+  {
+    className: '',
+    img: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&h=600&fit=crop&q=80',
+    caption: 'Robert Smissaert — Drums',
+    category: 'Band',
+  },
+  {
+    className: '',
+    img: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=600&fit=crop&q=80',
+    caption: 'In de studio · 2025',
+    category: 'Studio',
+  },
+  {
+    className: '',
+    img: 'https://images.unsplash.com/photo-1524650359799-842906ca1c06?w=800&h=600&fit=crop&q=80',
+    caption: 'Repetitie · Eindhoven',
+    category: 'Behind the scenes',
+  },
+  {
+    className: '',
+    img: 'https://images.unsplash.com/photo-1506157786151-b8491531ae41?w=800&h=600&fit=crop&q=80',
+    caption: 'Klokgebouw · PopEi',
+    category: 'Live',
+  },
 ];
 
 export default function GalleryPage() {
@@ -38,9 +78,14 @@ export default function GalleryPage() {
         }
         .gallery-item {
           background: var(--card); border: 1px solid var(--border);
-          aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+          aspect-ratio: 4/3;
           position: relative; overflow: hidden; cursor: pointer;
         }
+        .gallery-item img {
+          width: 100%; height: 100%; object-fit: cover; display: block;
+          transition: transform .4s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item.tall { aspect-ratio: 3/4; grid-row: span 2; }
         .gallery-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
         .gallery-placeholder { font-size: 3.5rem; opacity: .12; user-select: none; }
@@ -125,13 +170,15 @@ export default function GalleryPage() {
           </div>
 
           <div className="gallery-grid">
-            {GALLERY_ITEMS.map((item, i) => (
-              <div key={i} className={`gallery-item${item.className ? ` ${item.className}` : ''}`}>
-                <span className="gallery-placeholder">{item.emoji}</span>
-                <div className="gallery-overlay">Bekijk foto</div>
-                <div className="gallery-caption">{item.caption}</div>
-              </div>
-            ))}
+            {GALLERY_ITEMS
+              .filter((item) => activeTab === 'Alles' || item.category === activeTab)
+              .map((item, i) => (
+                <div key={i} className={`gallery-item${item.className ? ` ${item.className}` : ''}`}>
+                  <img src={item.img} alt={item.caption} loading="lazy" />
+                  <div className="gallery-overlay">Bekijk foto</div>
+                  <div className="gallery-caption">{item.caption}</div>
+                </div>
+              ))}
           </div>
         </div>
       </section>

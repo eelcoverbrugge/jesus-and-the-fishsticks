@@ -286,36 +286,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MERCH TEASER */}
-      <section>
-        <div className="container">
-          <p className="section-label">Merchandise</p>
-          <h2 className="section-title">Shop</h2>
-          <div className="rule"></div>
-          <p style={{ color: '#bbb', marginBottom: '2rem' }}>Draag de band. T-shirts, hoodies en de EP — rechtstreeks van de band.</p>
-          <div className="merch-strip">
-            <div className="merch-item">
-              <span className="icon">👕</span>
-              <span className="name">T-shirt</span>
-              <span className="price">€ 25</span>
-            </div>
-            <div className="merch-item">
-              <span className="icon">🧥</span>
-              <span className="name">Hoodie</span>
-              <span className="price">€ 45</span>
-            </div>
-            <div className="merch-item">
-              <span className="icon">💿</span>
-              <span className="name">EP — Straight from the can</span>
-              <span className="price">Digitaal · Gratis stream</span>
-            </div>
-          </div>
-          <div style={{ marginTop: '1.5rem' }}>
-            <Link href="/shop" className="btn btn-primary">Naar de shop →</Link>
-          </div>
-        </div>
-      </section>
-
       {/* PERS TEASER */}
       <section style={{ background: 'var(--dark)' }}>
         <div className="container">

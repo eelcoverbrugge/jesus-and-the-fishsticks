@@ -37,10 +37,15 @@ function StatusBadge({ status, price }: { status: Show['status']; price?: string
 }
 
 function ShowItem({ show, isPast }: { show: Show; isPast?: boolean }) {
+  const isDatePast = show.date && new Date(show.date) < new Date();
+  const effectiveStatus: Show['status'] =
+    show.status === 'upcoming' && isDatePast ? 'past' : show.status;
+  const effectivelyPast = isPast || effectiveStatus === 'past';
+
   return (
-    <div className={`show-item${isPast ? ' past' : ''}`}>
+    <div className={`show-item${effectivelyPast ? ' past' : ''}`}>
       <div className="show-date-box">
-        {show.status === 'tba' ? (
+        {effectiveStatus === 'tba' ? (
           <>
             <div className="show-day">TBA</div>
             <div className="show-month">{formatYear(show.date)}</div>
@@ -72,14 +77,11 @@ function ShowItem({ show, isPast }: { show: Show; isPast?: boolean }) {
         )}
       </div>
       <div className="show-action">
-        <StatusBadge status={show.status} price={show.price} />
-        {show.ticketUrl && show.status !== 'past' && (
+        <StatusBadge status={effectiveStatus} price={show.price} />
+        {show.ticketUrl && effectiveStatus !== 'past' && (
           <a href={show.ticketUrl} className="badge badge-tickets" target="_blank" rel="noopener noreferrer">
             Tickets →
           </a>
-        )}
-        {show.price && show.price !== show.status && show.status === 'upcoming' && (
-          <span className="badge badge-free">{show.price}</span>
         )}
       </div>
     </div>

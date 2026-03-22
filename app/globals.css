@@ -248,11 +248,12 @@ form select option { background: var(--dark); }
 }
 .newsletter-bar p { color: var(--mid); font-size: .9rem; margin-bottom: 1.5rem; }
 .newsletter-form { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+.newsletter-form { align-items: center; }
 .newsletter-form input {
   flex: 1 1 240px; background: var(--dark); border: 1px solid var(--border);
-  color: var(--text); padding: .8rem 1.1rem;
-  font-family: var(--font-b); font-size: .9rem; outline: none;
-  border-radius: var(--btn-radius);
+  color: var(--text); padding: .7rem 1.1rem;
+  font-family: var(--font-b); font-size: .85rem; outline: none;
+  border-radius: var(--btn-radius); line-height: 1.4;
 }
 .newsletter-form input:focus { border-color: var(--accent); }
 .newsletter-form input::placeholder { color: var(--muted); }

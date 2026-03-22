@@ -20,6 +20,10 @@ export default defineConfig({
               .title('Shows & Agenda')
               .icon(() => '🎸')
               .child(S.documentTypeList('show').title('Shows')),
+            S.listItem()
+              .title('Persdownloads (PDF)')
+              .icon(() => '📄')
+              .child(S.documentTypeList('pressDownload').title('Persdownloads')),
           ]),
     }),
     visionTool(),
