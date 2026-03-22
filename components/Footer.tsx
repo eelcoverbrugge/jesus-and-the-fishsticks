@@ -5,11 +5,11 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-logo">Jesus &amp; The Fishsticks</div>
       <nav className="footer-nav">
+        <Link href="/">Home</Link>
         <Link href="/about">Over ons</Link>
         <Link href="/music">Muziek</Link>
         <Link href="/shows">Shows</Link>
         <Link href="/gallery">Foto&apos;s</Link>
-        <Link href="/shop">Shop</Link>
         <Link href="/press">Pers</Link>
         <Link href="/contact">Contact</Link>
       </nav>
