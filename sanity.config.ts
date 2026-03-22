@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'jesus-and-the-fishsticks',
   title: 'Jesus & The Fishsticks',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'hjjwrxcx',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
 
   plugins: [
     structureTool({
