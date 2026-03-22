@@ -10,10 +10,6 @@ import {
   Nunito,
 } from 'next/font/google';
 import './globals.css';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
-import AudioPlayer from '@/components/AudioPlayer';
-import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -108,11 +104,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
-        <Nav />
         {children}
-        <Footer />
-        <AudioPlayer />
-        <ThemeSwitcher />
       </body>
     </html>
   );
