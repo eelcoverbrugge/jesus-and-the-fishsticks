@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
@@ -81,9 +82,8 @@ export default function GalleryPage() {
           aspect-ratio: 4/3;
           position: relative; overflow: hidden; cursor: pointer;
         }
-        .gallery-item img {
-          width: 100%; height: 100%; object-fit: cover; display: block;
-          transition: transform .4s ease;
+        .gallery-item img, .gallery-item span[style] {
+          transition: transform .4s ease !important;
         }
         .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item.tall { aspect-ratio: 3/4; grid-row: span 2; }
@@ -174,7 +174,7 @@ export default function GalleryPage() {
               .filter((item) => activeTab === 'Alles' || item.category === activeTab)
               .map((item, i) => (
                 <div key={i} className={`gallery-item${item.className ? ` ${item.className}` : ''}`}>
-                  <img src={item.img} alt={item.caption} loading="lazy" />
+                  <Image src={item.img} alt={item.caption} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 50vw, 33vw" />
                   <div className="gallery-overlay">Bekijk foto</div>
                   <div className="gallery-caption">{item.caption}</div>
                 </div>
